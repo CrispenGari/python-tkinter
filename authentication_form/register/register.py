@@ -1,19 +1,14 @@
 from tkinter import *
 from tkinter import messagebox
 
-def login_form(window, mainWindow, state):
-    """
-    :param window: this is the top level window for the logn form
-    :param mainWindow: this is the welcome page
-    :return:
-    """
+def register_form(window, mainWindow, state):
     window.resizable(False, False)
     window.iconbitmap('../../window/icon.ico')
     # setting the properties of the window
-    window.title("Login")
+    window.title("Register")
     # --------------
     w = 400
-    h = 230
+    h = 400
     s_width = window.winfo_screenwidth()
     s_height = window.winfo_screenheight()
     pos_from_top = int(s_height/2 - h/2)
@@ -27,7 +22,7 @@ def login_form(window, mainWindow, state):
     window.iconbitmap('../../window/icon.ico')
     window.protocol('WM_DELETE_WINDOW', lambda: close())
     # login
-    def login(username: str, password: str):
+    def register(username: str, password: str):
         # ' useRname    ' -> ' username    ' -> 'username'
         if username.lower().strip() == username_1 and password == password_1:
             # open main app
@@ -58,7 +53,7 @@ def login_form(window, mainWindow, state):
     Label(window, text="Logo").grid(
         row=0, column=0, columnspan=3
     )
-    Label(window, text="Login Form", font=("Arial", 12, "bold")).grid(
+    Label(window, text="Register Form", font=("Arial", 12, "bold")).grid(
         row=1, column=0, columnspan=3
     )
     Label(window, text="username", font=("Arial", 12)).grid(
@@ -67,6 +62,9 @@ def login_form(window, mainWindow, state):
     Label(window, text="password", font=("Arial", 12)).grid(
         row=3, column=0, sticky=W, pady=5, padx=15
     )
+    Label(window, text="confirm password", font=("Arial", 12)).grid(
+        row=4, column=0, sticky=W, pady=5, padx=15
+    )
 
     pass_ey = BooleanVar()
 
@@ -74,18 +72,20 @@ def login_form(window, mainWindow, state):
     username.grid(row=2, column=1, sticky=W)
     password = Entry(window, font=("Arial", 12), show='*')
     password.grid(row=3, column=1, sticky=W)
+    conf_password = Entry(window, font=("Arial", 12), show='*')
+    conf_password.grid(row=4, column=1, sticky=W)
     error = Label(window, text="", fg="red", font=("Arial", 11, "italic"))
-    error.grid(row=4, column=1)
+    error.grid(row=5, column=1)
     eye = Checkbutton(window, text="Show Password",
                       font=("Arial", 12),
                       variable=pass_ey, command=hide_show, onvalue=True, offvalue=False)
-    eye.grid(row=5, column=1)
+    eye.grid(row=6, column=1)
 
     Button(window, text="Login", font=("Arial", 12), width=10, bd=1, bg="green",
            fg="white",
-           command=lambda: login(username.get(), password.get())
-           ).grid(row=6, column=0, pady=10)
+           command=lambda: register(username.get(), password.get())
+           ).grid(row=7, column=0, pady=10)
     Button(window, text="Register", font=("Arial", 12), width=10, bd=1, bg="orange",
-           fg="white").grid(row=6, column=1)
+           fg="white").grid(row=7, column=1)
     Button(window, text="Close", font=("Arial", 12), width=10, bd=1, bg="red",
-           fg="white", command=close).grid(row=6, column=2)
+           fg="white", command=close).grid(row=7, column=2)
