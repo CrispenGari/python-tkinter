@@ -1,0 +1,4 @@
+
+
+class Keys:
+    API_KEY = "" # https://home.openweathermap.org/api_keys
